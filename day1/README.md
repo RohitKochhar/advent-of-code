@@ -18,7 +18,7 @@ In this list, the two entries that sum to 2020 are 1721 and 299. Multiplying the
 
 Of course, your expense report is much larger. Find the two entries that sum to 2020; what do you get if you multiply them together?
 
-#### Solution
+#### Solutions
 ##### Solution A
 The first solution I found for this problem employs the following steps:
 
@@ -60,3 +60,25 @@ We want to find two values from a list with n elements that equal some number N
 When we are searching for 2020, solution B and C are identical, but solution C is the better algorithm as it is the one which is more flexible.
 
 The verbose code with the quicksort algorithm included is in `day1/part1_verbose`, the bare minimum operating code with the best compleixty is in `day1/part1_slim`
+
+### Part 2
+#### Problem Outline
+The Elves in accounting are thankful for your help; one of them even offers you a starfish coin they had left over from a past vacation. They offer you a second one if you can find three numbers in your expense report that meet the same criteria.
+
+Using the above example again, the three entries that sum to 2020 are 979, 366, and 675. Multiplying them together produces the answer, 241861950.
+
+In your expense report, what is the product of the three entries that sum to 2020?
+
+#### Solutions
+##### Solution A
+Immediately upon reading this new problem, it seems intuitive to simply adapt our code from part 1 to be recursive, so that for a given number a, we can find two numbers, b and c, using our same hash table which equal 2020-a
+
+We want to find 3 numbers, a,b,c, from a list of n numbers, which add to some larger number N (=2020) 
+
+1. Convert the array into an unordered hash table, this has a complexity of n + N%100.
+2. Iterate down the rows of the first half of the hash matrix. For each row that we iterate, go across the row as well and try each value as the base number. There is a worst case complexity of 100 for each row, and we do this ((N+1)%100)/2 times, so the worst case complexity for this step is 50*((N+1)%100).
+3. We repeat this step again to find the two numbers which will add to the number from step 2 to add 2020. So this step has a complexity of 50*((N+1)%100), but it happens for each occurance of step 2.
+
+This algorithm has an apparent complexity of n+(N%100)+(50*(N%100))^2
+
+For N = 2020, we get have an affine complexity. This solution takes about 0.003 seconds.
