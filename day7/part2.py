@@ -1,9 +1,3 @@
-# For test purposes
-import time
-start_time = time.time()
-
-a_ContainingColors  = []
-
 class Bag():
     # Constructor
     def __init__(self, s_BagRule):
@@ -67,10 +61,7 @@ class Bag():
 
 d_BagRules = {}
 
-
 a_Input = open('input.txt', 'r').readlines()
-
-s_BagOfInterestColor    = 
 
 for s_BagRule in a_Input:
     o_Bag   =   Bag(s_BagRule)
